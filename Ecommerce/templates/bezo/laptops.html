@@ -1,0 +1,35 @@
+{% extends 'bezo/base.html' %} {% load static %} {% block title %}Laptops{% endblock title %} {% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <a href="{% url 'laptop' %}" class="list-group-item">All Laptops</a>
+                <a href="{% url 'laptop_data' 'lenovo'  %}" class="list-group-item">Lenove Laptops</a>
+                <a href="{% url 'laptop_data' 'hp' %}" class="list-group-item">HP Laptops</a>
+                <a href="{% url 'laptop_data' 'dell' %}" class="list-group-item">Dell Laptops</a>
+                <a href="{% url 'laptop_data' 'above' %}" class="list-group-item">Above 35000 Laptops</a>
+                <a href="{% url 'laptop_data' 'below' %}" class="list-group-item">Below 35000 Laptops</a>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                {% for product in laptops %}
+                <div class="col-sm-4 text-center mb-4">
+                    <a href="{% url 'product-detail' product.id %}" class="btn">
+                        <div class="card ">
+                            <img src="{{ product.image.url }}" alt="" height="150" class="">
+                            <div class="fw-bold ">{{product.title}}</div>
+                            <div class="fw-bold ">Rs. {{product.discount_price}}
+                                <small class="fw-light text-decoration-line-through ">
+                                {{product.selling_price}}
+                            </small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

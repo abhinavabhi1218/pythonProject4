@@ -1,0 +1,21 @@
+{% extends 'bezo/base.html' %} {% load static %} {% block title %}Bottoms{% endblock title %} {% block main-content %}
+<div class="container my-5">
+    <div class="col-sm-9">
+        <div class="row">
+            {% for product in bottoms %}
+            <div class="col-sm-4 text-center mb-4">
+                <a href="{% url 'product-detail' product.id %}" class="btn">
+                    <div class="card">
+                        <img src="{{ product.image.url }}" alt="" height="200" class="">
+                        <div class="fw-bold">{{product.title}}</div>
+                        <div class="fw-bold">Rs. {{product.discount_price}}
+                            <small class="fw-light text-decoration-line-through">
+                                {{product.selling_price}}
+                            </small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>{% endblock main-content %}
